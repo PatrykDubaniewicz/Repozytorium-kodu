@@ -85,7 +85,14 @@ for i in range(0,len(dictionary['liczby'])):
     if(dictionary['wykladniki'][i] == '1'):
         wspolczynnik_liczbowy += int(dictionary['liczby'][i])
     else:
-        wartosc = int(dictionary['liczby'][i]) * int(dictionary['wykladniki'][i])
+        wartosc = float(dictionary['liczby'][i]) * int(dictionary['wykladniki'][i])
+        if(wartosc%1==0):
+            wartosc = str(wartosc)
+            wartosc = wartosc[:-2]
+            wartosc = int(wartosc)
+        else:
+            wartosc = str(wartosc)
+            wartosc = float(wartosc)
         if(i==0):
             pochodna += str(wartosc) + 'x'
         else:
@@ -93,17 +100,19 @@ for i in range(0,len(dictionary['liczby'])):
                 pochodna += str(wartosc) + 'x'
             else:
                 pochodna += '+' + str(wartosc) + 'x'
-        if(dictionary['wykladniki'][i]>'2'):
+        if(dictionary['wykladniki'][i]!='2'):
             pochodna += '^' + str(int(dictionary['wykladniki'][i]) - 1)
 if(wspolczynnik_liczbowy>0):
     pochodna += '+' + str(wspolczynnik_liczbowy)
 elif(wspolczynnik_liczbowy<0):
     pochodna += str(wspolczynnik_liczbowy)
 
-if(pochodna[0]=='+'):
-    pochodna = pochodna[1:]
+if(len(pochodna)!=0):
+    if(pochodna[0]=='+'):
+        pochodna = pochodna[1:]
 
 if(len(pochodna)==0):
     print('Wartość pochodnej wynosi: 0')
 else:
     print('Wartość pochodnej wynosi: ' + pochodna)
+
