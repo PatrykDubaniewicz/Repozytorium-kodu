@@ -107,4 +107,3 @@ if(len(pochodna)==0):
     print('Wartość pochodnej wynosi: 0')
 else:
     print('Wartość pochodnej wynosi: ' + pochodna)
-print(dictionary)
